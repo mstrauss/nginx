@@ -111,6 +111,8 @@ else
       :src_binary => node['nginx']['binary'],
       :pid => node['nginx']['pid']
     )
+    # actually, if ohai version and source version differ, we need to restart (new version installed)
+    notifies :restart, 'service[nginx]'
   end
 
   case node['platform']
